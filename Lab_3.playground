@@ -1,0 +1,112 @@
+import UIKit
+
+struct TwitterUser {
+    let name: String
+    let subscribers: Int
+}
+
+enum MediaType {
+    case video
+    case post
+    case twitsRoll
+}
+
+class InternetPost {
+    var type: MediaType
+    init(type: MediaType) {
+        self.type = type
+    }
+}
+
+class TwitterPost: InternetPost {
+    let user: TwitterUser
+    let date: Date
+    let text: String
+    let likes: Int
+    let repliesNum: Int
+    let views: Int
+    let repostsNum: Int
+    init(user: TwitterUser, date: Date, text: String, likes: Int, repliesNum: Int, views: Int, repostsNum: Int, mediaType: MediaType) {
+        self.user = user
+        self.date = date
+        self.text = text
+        self.likes = likes
+        self.repliesNum = repliesNum
+        self.views = views
+        self.repostsNum = repostsNum
+        super.init(type: mediaType)
+    }
+}
+
+extension TwitterPost {
+    func normalizedLikes() -> String {
+        if likes >= 1000 {
+            return "\(likes / 1000)k"
+        } else {
+            return "\(likes)"
+        }
+    }
+    func normalizedReplies()->String{
+        if repliesNum>=1000{
+            return "\(repliesNum/1000)k"
+        }else{
+            return "\(repliesNum)"
+        }
+    }
+    func normalizedViews()->String{
+        if views>=1000{
+            return "\(views/1000)k"
+        }else{
+            return "\(views)"
+        }
+    }
+    func normalizedRepostsNum()->String{
+        if repostsNum>=1000{
+            return "\(repostsNum/1000)k"
+        }else{
+            return "\(repostsNum)"
+        }
+    }
+    func normalizedTimeFormat() -> String {
+        let format = DateFormatter()
+        format.dateFormat = "dd.MM.yyyy"
+        return format.string(from: date)
+    }
+    
+    func engagementRatePerView() -> Double {
+            let totalEngagement = Double(likes + repliesNum + repostsNum)
+            return totalEngagement / Double(views)
+        }
+    func isViral() -> String {
+        if views > 100000{
+            return "Your post is Viral"
+        }else{
+            return "Your post isn't viral"
+        }
+    }
+    
+    func ageInDays() -> Int {
+            let currentDate = Date()
+            let calendar = Calendar.current
+            let components = calendar.dateComponents([.day], from: date, to: currentDate)
+            return components.day ?? 0
+        }
+
+
+}
+
+let user = TwitterUser(name: "Boba",subscribers: 200)
+let post = TwitterPost(user: user, date: Date(), text: "Who needs April fools day when your whole life is a joke", likes: 41004, repliesNum: 5673, views: 48329, repostsNum: 5673, mediaType: .post)
+
+print("Post data:")
+print("Author: \(post.user.name)")
+print("Text: \(post.text)")
+print("Likes: \(post.normalizedLikes())")
+print("Replies number: \(post.normalizedReplies())")
+print("Views: \(post.normalizedViews())")
+print("Reposts number: \(post.normalizedRepostsNum())")
+print("Post date of publication: \(post.normalizedTimeFormat())")
+print("Engagement rate per 1 view: \(round(post.engagementRatePerView()*100)/100.0)")
+print(post.isViral())
+
+
