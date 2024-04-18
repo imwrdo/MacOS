@@ -1,0 +1,253 @@
+import UIKit
+
+//Data model
+struct City{
+    let ID: Int;
+    let Name: String;
+    let Description: String;
+    let Latitude: Double;
+    let Longitude: Double;
+    let Keywords: [String];
+    var Locations: [Location] = [];
+}
+
+struct Location {
+    let ID: Int;
+    let LocationType: String;
+    let Name: String;
+    let Rating: Int;
+}
+
+var Cities: [City] = [
+    City(ID: 1, Name: "New York", Description: "The Big Apple", Latitude: 40.7128, Longitude: -74.0060, Keywords: ["city", "culture", "diverse"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "The Spotted Pig", Rating: 4),
+        Location(ID: 2, LocationType: "Museum", Name: "The Metropolitan Museum of Art", Rating: 5),
+        Location(ID: 3, LocationType: "Park", Name: "Central Park", Rating: 5)
+    ]),
+    City(ID: 2, Name: "London", Description: "The Old Smoke", Latitude: 51.5074, Longitude: -0.1278, Keywords: ["historic", "culture"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "Sketch", Rating: 5),
+        Location(ID: 2, LocationType: "Museum", Name: "British Museum", Rating: 5),
+        Location(ID: 3, LocationType: "Park", Name: "Hyde Park", Rating: 4)
+    ]),
+    City(ID: 3, Name: "Paris", Description: "The City of Love", Latitude: 48.8566, Longitude: 2.3522, Keywords: ["romantic", "art", "fashion"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "Le Cinq", Rating: 5),
+        Location(ID: 2, LocationType: "Museum", Name: "Louvre Museum", Rating: 5),
+        Location(ID: 3, LocationType: "Park", Name: "Tuileries Garden", Rating: 4)
+    ]),
+    City(ID: 4, Name: "Tokyo", Description: "The Capital of Japan", Latitude: 35.6895, Longitude: 139.6917, Keywords: ["modern", "technology", "food"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "Sukiyabashi Jiro", Rating: 5),
+        Location(ID: 2, LocationType: "Museum", Name: "Tokyo National Museum", Rating: 4),
+        Location(ID: 3, LocationType: "Park", Name: "Ueno Park", Rating: 4)
+    ]),
+    City(ID: 5, Name: "Rome", Description: "The Eternal City", Latitude: 41.9028, Longitude: 12.4964, Keywords: ["historic", "architecture", "food"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "La Pergola", Rating: 5),
+        Location(ID: 2, LocationType: "Museum", Name: "The Vatican Museums", Rating: 5),
+        Location(ID: 3, LocationType: "Park", Name: "Villa Borghese Gardens", Rating: 4)
+    ]),
+    City(ID: 6, Name: "Sydney", Description: "The Harbour City", Latitude: -33.8688, Longitude: 151.2093, Keywords: ["beach", "city", "sailing"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "Quay", Rating: 5),
+        Location(ID: 2, LocationType: "Museum", Name: "Art Gallery of New South Wales", Rating: 4),
+        Location(ID: 3, LocationType: "Park", Name: "Royal Botanic Garden", Rating: 4)
+    ]),
+    City(ID: 7, Name: "Dubai", Description: "The City of Gold", Latitude: 25.276987, Longitude: 55.296249, Keywords: ["luxury", "modern", "shopping"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "At.mosphere", Rating: 4),
+        Location(ID: 2, LocationType: "Museum", Name: "Dubai Museum", Rating: 4),
+        Location(ID: 3, LocationType: "Park", Name: "Safa Park", Rating: 4)
+    ]),
+    City(ID: 8, Name: "Los Angeles", Description: "The City of Angels", Latitude: 34.0522, Longitude: -118.2437, Keywords: ["entertainment", "beach", "celebrities"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "Nobu Malibu", Rating: 4),
+        Location(ID: 2, LocationType: "Museum", Name: "The Getty Center", Rating: 5),
+        Location(ID: 3, LocationType: "Park", Name: "Griffith Park", Rating: 4)
+    ]),
+    City(ID: 9, Name: "Berlin", Description: "The Capital of Germany", Latitude: 52.5200, Longitude: 13.4050, Keywords: ["history", "art", "nightlife"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "Tim Raue", Rating: 5),
+        Location(ID: 2, LocationType: "Museum", Name: "Pergamon Museum", Rating: 5),
+        Location(ID: 3, LocationType: "Park", Name: "Tiergarten", Rating: 4)
+    ]),
+    City(ID: 10, Name: "Moscow", Description: "The Capital of Russia", Latitude: 55.7558, Longitude: 37.6173, Keywords: ["historic", "culture", "architecture"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "White Rabbit", Rating: 5),
+        Location(ID: 2, LocationType: "Museum", Name: "State Historical Museum", Rating: 4),
+        Location(ID: 3, LocationType: "Park", Name: "Gorky Park", Rating: 4)
+    ]),
+    City(ID: 11, Name: "Seoul", Description: "The Capital of South Korea", Latitude: 37.5665, Longitude: 126.9780, Keywords: ["technology", "history", "culture"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "Jungsik", Rating: 5),
+        Location(ID: 2, LocationType: "Museum", Name: "National Museum of Korea", Rating: 5),
+        Location(ID: 3, LocationType: "Park", Name: "Namsan Park", Rating: 4)
+    ]),
+    City(ID: 12, Name: "Mumbai", Description: "The City of Dreams", Latitude: 19.0760, Longitude: 72.8777, Keywords: ["busy", "diverse", "culture"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "Dakshinayan", Rating: 4),
+        Location(ID: 2, LocationType: "Museum", Name: "Chhatrapati Shivaji Maharaj Vastu Sangrahalaya", Rating: 4),
+        Location(ID: 3, LocationType: "Park", Name: "Sanjay Gandhi National Park", Rating: 4)
+    ]),
+    City(ID: 13, Name: "Rio de Janeiro", Description: "The Marvelous City", Latitude: -22.9068, Longitude: -43.1729, Keywords: ["beach", "carnival", "culture"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "Aprazível", Rating: 5),
+        Location(ID: 2, LocationType: "Museum", Name: "Museum of Tomorrow", Rating: 4),
+        Location(ID: 3, LocationType: "Park", Name: "Tijuca National Park", Rating: 4)
+    ]),
+    City(ID: 14, Name: "Cape Town", Description: "The Mother City", Latitude: -33.9249, Longitude: 18.4241, Keywords: ["scenic", "adventure", "nature"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "The Test Kitchen", Rating: 5),
+        Location(ID: 2, LocationType: "Museum", Name: "Zeitz Museum of Contemporary Art Africa", Rating: 4),
+        Location(ID: 3, LocationType: "Park", Name: "Table Mountain National Park", Rating: 5)
+    ]),
+    City(ID: 15, Name: "Toronto", Description: "The Capital of Ontario", Latitude: 43.65107, Longitude: -79.347015, Keywords: ["multicultural", "city", "arts"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "Canoe", Rating: 5),
+        Location(ID: 2, LocationType: "Museum", Name: "Royal Ontario Museum", Rating: 4),
+        Location(ID: 3, LocationType: "Park", Name: "High Park", Rating: 4)
+    ]),
+    City(ID: 16, Name: "Singapore", Description: "The Lion City", Latitude: 1.3521, Longitude: 103.8198, Keywords: ["modern", "clean", "food"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "Liao Fan Hawker Chan", Rating: 4),
+        Location(ID: 2, LocationType: "Museum", Name: "ArtScience Museum", Rating: 4),
+        Location(ID: 3, LocationType: "Park", Name: "Gardens by the Bay", Rating: 5)
+    ]),
+    City(ID: 17, Name: "Istanbul", Description: "The Gateway to the East", Latitude: 41.0082, Longitude: 28.9784, Keywords: ["historic", "culture", "brIDge"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "Mikla", Rating: 5),
+        Location(ID: 2, LocationType: "Museum", Name: "Hagia Sophia", Rating: 5),
+        Location(ID: 3, LocationType: "Park", Name: "Emirgan Park", Rating: 4)
+    ]),
+    City(ID: 18, Name: "Barcelona", Description: "The City of Counts", Latitude: 41.3851, Longitude: 2.1734, Keywords: ["architecture", "beach", "culture"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "Tickets", Rating: 5),
+        Location(ID: 2, LocationType: "Museum", Name: "Picasso Museum", Rating: 4),
+        Location(ID: 3, LocationType: "Park", Name: "Parc Güell", Rating: 5)
+    ]),
+    City(ID: 19, Name: "Bangkok", Description: "The City of Angels", Latitude: 13.7563, Longitude: 100.5018, Keywords: ["vibrant", "culture", "food"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "Gaggan", Rating: 5),
+        Location(ID: 2, LocationType: "Museum", Name: "Grand Palace", Rating: 4),
+        Location(ID: 3, LocationType: "Park", Name: "Lumpini Park", Rating: 4)
+    ]),
+    City(ID: 20, Name: "Venice", Description: "The Floating City", Latitude: 45.4408, Longitude: 12.3155, Keywords: ["canals", "romantic", "art"], Locations: [
+        Location(ID: 1, LocationType: "Restaurant", Name: "Osteria Alle Testiere", Rating: 5),
+        Location(ID: 2, LocationType: "Museum", Name: "Doge's Palace", Rating: 5),
+        Location(ID: 3, LocationType: "Park", Name: "Giardini della Biennale", Rating: 4)
+    ]),
+]
+
+//Search
+func searchCity(byName Name: String) -> [City] {
+    return Cities.filter { $0.Name.lowercased().contains(Name.lowercased()) }
+}
+
+func searchCity(byKeyword Keyword: String) -> [City] {
+    return Cities.filter { $0.Keywords.contains(Keyword.lowercased()) }
+}
+//DistanceS
+func distanceBetweenCities(City_1: City, City_2: City) -> Double {
+    let lat1 = City_1.Latitude * .pi / 180
+    let lon1 = City_1.Longitude * .pi / 180
+    let lat2 = City_2.Latitude * .pi / 180
+    let lon2 = City_2.Longitude * .pi / 180
+    
+    let dlon = lon2 - lon1
+    let dlat = lat2 - lat1
+    
+    let a = pow(sin(dlat / 2), 2) + cos(lat1) * cos(lat2) * pow(sin(dlon / 2), 2)
+    let c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    
+    let radiusOfEarth = 6371.0 // Earth's radius in kilometers
+    return radiusOfEarth * c
+}
+
+func closestAndFarthestCities(userLatitude: Double, userLongitude: Double) -> (City, City)? {
+    guard let userLocation = Cities.first(where: { $0.Latitude == userLatitude && $0.Longitude == userLongitude }) else {
+        return nil
+    }
+    var closestCity: City?
+    var farthestCity: City?
+    var closestDistance: Double = .infinity
+    var farthestDistance: Double = 0
+    
+    for city in Cities {
+        if city.Latitude == userLatitude && city.Longitude == userLongitude {
+            continue
+        }
+        let distance = distanceBetweenCities(City_1: userLocation, City_2: city)
+        if distance < closestDistance {
+            closestDistance = distance
+            closestCity = city
+        }
+        if distance > farthestDistance {
+            farthestDistance = distance
+            farthestCity = city
+        }
+    }
+    
+    return (closestCity!, farthestCity!)
+}
+
+func twoFarthestCities() -> (City, City) {
+    var farthestCities: (City, City) = (Cities[0], Cities[1])
+    var maxDistance: Double = .ulpOfOne
+    
+    for i in 0..<Cities.count {
+        for j in i+1..<Cities.count {
+            let distance = distanceBetweenCities(City_1: Cities[i], City_2: Cities[j])
+            if distance > maxDistance {
+                maxDistance = distance
+                farthestCities = (Cities[i], Cities[j])
+            }
+        }
+    }
+    
+    return farthestCities
+}
+
+
+//Extend data model
+extension City {
+    mutating func addLocation(ID: Int, LocationType: String, Name: String, Rating: Int) {
+        let existingIndex = Locations.firstIndex { $0.ID == ID }
+        if let existingIndex = existingIndex {
+            Locations[existingIndex] = Location(ID: ID, LocationType: LocationType, Name: Name, Rating: Rating)
+        } else {
+            let location = Location(ID: ID, LocationType: LocationType, Name: Name, Rating: Rating)
+            self.Locations.append(location)
+        }
+    }
+}
+
+//Advance search
+
+func citiesWithFiveStarRestaurants() -> [City] {
+    return Cities.filter { city in
+        city.Locations.contains { $0.LocationType.lowercased() == "restaurant" && $0.Rating == 5 }
+    }
+}
+
+func printLocationsSortedByRating(city: City) {
+    let locationsSortedByRating = city.Locations.sorted { $0.Rating > $1.Rating }
+    
+    print("\nLocations in \(city.Name) sorted by rating:")
+    for location in locationsSortedByRating {
+        print("- \(location.Name), Rating: \(location.Rating)")
+    }
+}
+
+
+func displayCitiesWithFiveStarLocations() {
+    for city in Cities {
+        let fiveStarLocations = city.Locations.filter { $0.Rating == 5 }
+        print("\n\(city.Name) has \(fiveStarLocations.count) locations with a 5-star rating:")
+        for location in fiveStarLocations {
+            print("- \(location.Name)")
+        }
+        print()
+    }
+}
+
+
+// Test
+// Print cities with 5-star restaurants
+let citiesWithFiveStars = citiesWithFiveStarRestaurants()
+print("Cities with five-star restaurants:")
+for city in citiesWithFiveStars {
+    print(city.Name)
+}
+
+// Print locations in New York sorted by rating
+if let newYork = Cities.first(where: { $0.Name == "New York" }) {
+    printLocationsSortedByRating(city: newYork)
+}
+
+// Print locations in London sorted by rating
+if let london = Cities.first(where: { $0.Name == "London" }) {
+    printLocationsSortedByRating(city: london)
+}
